@@ -3,7 +3,7 @@ using MovieAPI.Models;
 
 namespace MovieAPI.Services
 {
-    public interface IMovieService
+    public interface IMoviesService
     {
         Movie AddMovie(Movie newMovie);
         void Delete(int id);

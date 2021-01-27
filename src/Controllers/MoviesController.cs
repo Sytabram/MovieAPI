@@ -10,22 +10,22 @@ namespace MovieAPI.Controllers
     [ApiController]
     public class MoviesController : ControllerBase
     {
-        public MoviesController(IMovieService movieService)
+        public MoviesController(IMoviesService moviesService)
         {
-            _movieService = movieService;
+            _moviesService = moviesService;
         }
-        private readonly IMovieService _movieService;
+        private readonly IMoviesService _moviesService;
 
         [HttpGet("movies")]
         public IActionResult GetAll()
         {
-            return Ok(_movieService.GetAll());
+            return Ok(_moviesService.GetAll());
         }
         [HttpGet("movies/{id}")]
         public IActionResult GetSingle(int id)
         {
             if (id < 1) return BadRequest();
-            var c = _movieService.GetSingle(id);
+            var c = _moviesService.GetSingle(id);
             if (c == null) return NotFound();
             return Ok(c);
         }
@@ -35,10 +35,10 @@ namespace MovieAPI.Controllers
         {
             if (id < 1) return BadRequest();
             if (model.Name.Length > 32) return BadRequest();
-            if (_movieService.ExistsByName(model.Name)) return BadRequest();
-            if (!_movieService.ExistsById(id)) return NotFound();
+            if (_moviesService.ExistsByName(model.Name)) return BadRequest();
+            if (!_moviesService.ExistsById(id)) return NotFound();
 
-            return Ok(_movieService.Update(id, model));
+            return Ok(_moviesService.Update(id, model));
         }
 
         [HttpPost("movies")]
@@ -46,10 +46,10 @@ namespace MovieAPI.Controllers
         {
             if (newMovie.Id < 1) return BadRequest();
             if (newMovie.Name.Length > 32) return BadRequest();
-            if (_movieService.ExistsByName(newMovie.Name)) return BadRequest();
-            if (_movieService.ExistsById(newMovie.Id)) return BadRequest();
+            if (_moviesService.ExistsByName(newMovie.Name)) return BadRequest();
+            if (_moviesService.ExistsById(newMovie.Id)) return BadRequest();
 
-            _movieService.AddMovie(newMovie);
+            _moviesService.AddMovie(newMovie);
 
             return Created($"movies/{newMovie.Id}", newMovie);
         }
@@ -60,14 +60,14 @@ namespace MovieAPI.Controllers
             if (name == null) return Unauthorized();
             if (name.Length < 4) return Unauthorized();
             if (name == "teapot") return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status418ImATeapot);
-            return Ok(_movieService.Search(name));
+            return Ok(_moviesService.Search(name));
         }
 
         [HttpDelete("movies/{id}")]
         public IActionResult Delete(int id)
         {
             try {
-                _movieService.Delete(id);
+                _moviesService.Delete(id);
                 return NoContent();
             } catch {
                 return NoContent();
@@ -79,14 +79,14 @@ namespace MovieAPI.Controllers
         {
             var ms = new MemoryStream();
             file.CopyTo(ms);
-            _movieService.SetPoster(id, ms.ToArray());
+            _moviesService.SetPoster(id, ms.ToArray());
             return Ok();
         }
 
         [HttpGet("movies/{id}/poster")]
         public IActionResult Images([FromRoute] int id)
         {
-            return File(_movieService.GetPoster(id), "image/jpeg");
+            return File(_moviesService.GetPoster(id), "image/jpeg");
         }
     }
 }

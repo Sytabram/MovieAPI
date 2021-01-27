@@ -5,11 +5,11 @@ using MovieAPI.Models;
 
 namespace MovieAPI.Services
 {
-    public class MovieService : IMovieService
+    public class MoviesService : IMoviesService
     {
         private readonly MovieAPIDataContext _context;
         
-        public MovieService(MovieAPIDataContext context)
+        public MoviesService(MovieAPIDataContext context)
         {
             _context = context;
         }
