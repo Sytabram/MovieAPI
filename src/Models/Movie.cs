@@ -14,8 +14,8 @@ namespace MovieAPI.Models
         public string Description { get; set; }
         public int Rating { get; set; }
         public int Time { get; set; }
-        public Category Category { get; set; }
-        public Studio Studio { get; set; }
+        public  ICollection<Category> Category {get; set;}
+        public  ICollection<Studio> Studio {get; set;}
     }
     
     
@@ -28,11 +28,24 @@ namespace MovieAPI.Models
     public class MoviePatchViewModel
     {
         public string Name { get; set; }
-        public Category Category { get; set; }
-        public Studio Studio { get; set; }
+        public  ICollection<Category> Category {get; set;}
+        public  ICollection<Studio> Studio {get; set;}
     }
-
-    public class CUMovieDTO
+    public class MovieDto
+    {
+        public int Id { get; set; }
+        [Required] 
+        [StringLength(15)]
+        public string Name { get; set; }
+        public byte[] Poster { get; set; }
+        public int Year { get; set; }
+        public string Description { get; set; }
+        public int Rating { get; set; }
+        public int Time { get; set; }
+        public virtual ICollection<CategoryDto> Category {get; set;}
+        public virtual ICollection<StudioDto> Studio {get; set;}
+    }
+    public class CUMovieDto
     {
         public string Name { get; set; }
         public int Year { get; set; }

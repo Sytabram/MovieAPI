@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieAPI.Models;
@@ -17,12 +19,12 @@ namespace MovieAPI.Controllers
         private readonly IMoviesService _moviesService;
 
         [HttpGet("movies")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
             return Ok(_moviesService.GetAll());
         }
         [HttpGet("movies/{id}")]
-        public IActionResult GetSingle(int id)
+        public async Task<IActionResult> GetSingle(int id)
         {
             if (id < 1) return BadRequest();
             var c = _moviesService.GetSingle(id);
@@ -31,27 +33,27 @@ namespace MovieAPI.Controllers
         }
 
         [HttpPost("movies/{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] MoviePatchViewModel model)
+        public async Task<IActionResult> UpdateMovie([FromRoute] int id, [FromBody] CUMovieDto modelDto)
         {
             if (id < 1) return BadRequest();
-            if (model.Name.Length > 32) return BadRequest();
-            if (_moviesService.ExistsByName(model.Name)) return BadRequest();
-            if (!_moviesService.ExistsById(id)) return NotFound();
-
-            return Ok(_moviesService.Update(id, model));
+            if (!await _moviesService.ExistsById(id)) return NotFound();
+                
+            return Ok(_moviesService.Update(id, modelDto));
         }
 
         [HttpPost("movies")]
-        public IActionResult AddMovie(Movie newMovie)
+        public async Task<IActionResult> AddMovie(CUMovieDto newMovie)
         {
-            if (newMovie.Id < 1) return BadRequest();
-            if (newMovie.Name.Length > 32) return BadRequest();
-            if (_moviesService.ExistsByName(newMovie.Name)) return BadRequest();
-            if (_moviesService.ExistsById(newMovie.Id)) return BadRequest();
-
-            _moviesService.AddMovie(newMovie);
-
-            return Created($"movies/{newMovie.Id}", newMovie);
+            try
+            {
+                var modelDb = await _moviesService.AddMovie(newMovie);
+                return Created($"movie/{modelDb.Id}", modelDb);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
 
         [HttpGet("search/movies")]
@@ -64,18 +66,19 @@ namespace MovieAPI.Controllers
         }
 
         [HttpDelete("movies/{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try {
                 _moviesService.Delete(id);
-                return NoContent();
-            } catch {
-                return NoContent();
+                return Ok();
+            } catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
         [HttpPost("movies/{id}/poster")]
-        public IActionResult Images([FromRoute] int id, IFormFile file)
+        public async Task<IActionResult> Images([FromRoute] int id, IFormFile file)
         {
             var ms = new MemoryStream();
             file.CopyTo(ms);
@@ -84,9 +87,9 @@ namespace MovieAPI.Controllers
         }
 
         [HttpGet("movies/{id}/poster")]
-        public IActionResult Images([FromRoute] int id)
+        public async Task<IActionResult> Images([FromRoute] int id)
         {
-            return File(_moviesService.GetPoster(id), "image/jpeg");
+            return File(await _moviesService.GetPoster(id), "image/jpeg");
         }
     }
 }

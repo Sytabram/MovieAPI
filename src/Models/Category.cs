@@ -5,15 +5,11 @@ namespace MovieAPI.Models
 {
     public class Category
     {
-        public Category()
-        {
-            Movies = new List<Movie>();
-        }
         public int Id { get; set; }
         [Required] 
         [StringLength(15)]
         public string Name { get; set; }
-        public List<Movie> Movies { get; set; }
+        public ICollection<Movie> Movies { get; set; }
         
     }
     public class CategorySummaryViewModel
@@ -49,5 +45,12 @@ namespace MovieAPI.Models
     {
         public int CategoryId { get; set; }
         public int MovieId { get; set; }
+    }
+    
+    public class CategoryDto
+    {
+        public int Id { get; set; }
+        public string Name{get; set;}
+
     }
 }

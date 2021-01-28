@@ -37,6 +37,7 @@ namespace MovieAPI
             services.AddTransient<IMoviesService, MoviesService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<ICategoriesRepository, CategoriesRepository>();
+            services.AddTransient<IMoviesRepository,MoviesRepository>();
 
         }
 

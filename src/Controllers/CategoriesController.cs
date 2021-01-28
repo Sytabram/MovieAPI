@@ -83,7 +83,7 @@ namespace MovieAPI.Controllers
         }
 
         [HttpDelete("categories/{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {

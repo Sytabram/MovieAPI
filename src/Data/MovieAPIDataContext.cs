@@ -14,16 +14,16 @@ namespace MovieAPI.Data
         {
         
         }
-        // protected override void OnModelCreating(ModelBuilder modelBuilder) 
-        // {
-        //     modelBuilder.Entity<Movie>(entity =>
-        //     {
-        //         entity.HasMany(m => m.Category)
-        //             .WithMany(c => c.Movies);
-        //         
-        //         entity.HasMany(m => m.Studio)
-        //             .WithMany(c => c.Movies);
-        //     });
-        // }
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            modelBuilder.Entity<Movie>(entity =>
+            {
+                entity.HasMany(m => m.Category)
+                    .WithMany(c => c.Movies);
+                
+                entity.HasMany(m => m.Studio)
+                    .WithMany(c => c.Movies);
+            });
+        }
     }
 }

@@ -1,19 +1,20 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MovieAPI.Models;
 
 namespace MovieAPI.Services
 {
     public interface IMoviesService
     {
-        Movie AddMovie(Movie newMovie);
-        void Delete(int id);
-        bool ExistsById(int id);
-        bool ExistsByName(string name);
-        IList<Movie> GetAll();
-        Movie GetSingle(int id);
-        IList<Movie> Search(string name);
-        Movie Update(int id, MoviePatchViewModel model);
-        void SetPoster(int id, byte[] image);
-        byte[] GetPoster(int id);
+        Task<List<MovieDto>> GetAll();
+        Task<MovieDto> GetSingle(int id);
+        Task<Movie> Update(int id, CUMovieDto model);
+        Task<MovieDto> AddMovie(CUMovieDto newMovie);
+        Task<List<Movie>> Search(string name);
+        Task<bool> Delete(int id);
+        Task<bool> SetPoster(int id, byte[] image);
+        Task<byte[]> GetPoster(int id);
+        Task<bool> ExistsById(int id);
+        Task<bool> ExistsByName(string name);
     }
 }
