@@ -8,7 +8,7 @@ namespace MovieAPI.Services
     {
         Task<List<MovieDto>> GetAll();
         Task<MovieDto> GetSingle(int id);
-        Task<Movie> Update(int id, CUMovieDto model);
+        Task<MovieDto> Update(int id, CUMovieDto model);
         Task<MovieDto> AddMovie(CUMovieDto newMovie);
         Task<List<Movie>> Search(string name);
         Task<bool> Delete(int id);

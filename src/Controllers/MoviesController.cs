@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MovieAPI.Exceptions;
 using MovieAPI.Models;
 using MovieAPI.Services;
 
@@ -21,15 +22,20 @@ namespace MovieAPI.Controllers
         [HttpGet("movies")]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(_moviesService.GetAll());
+            return Ok(await _moviesService.GetAll());
         }
         [HttpGet("movies/{id}")]
         public async Task<IActionResult> GetSingle(int id)
         {
-            if (id < 1) return BadRequest();
-            var c = _moviesService.GetSingle(id);
-            if (c == null) return NotFound();
-            return Ok(c);
+            try
+            {
+                return Ok(await _moviesService.GetSingle(id));
+            }
+            catch (DataNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+                throw;
+            }
         }
 
         [HttpPost("movies/{id}")]
@@ -37,8 +43,8 @@ namespace MovieAPI.Controllers
         {
             if (id < 1) return BadRequest();
             if (!await _moviesService.ExistsById(id)) return NotFound();
-                
-            return Ok(_moviesService.Update(id, modelDto));
+            var movie = await _moviesService.Update(id, modelDto);
+            return Ok(movie);
         }
 
         [HttpPost("movies")]
@@ -57,19 +63,19 @@ namespace MovieAPI.Controllers
         }
 
         [HttpGet("search/movies")]
-        public IActionResult Search(string name)
+        public async Task<IActionResult> Search(string name)
         {
             if (name == null) return Unauthorized();
             if (name.Length < 4) return Unauthorized();
             if (name == "teapot") return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status418ImATeapot);
-            return Ok(_moviesService.Search(name));
+            return Ok(await _moviesService.Search(name));
         }
 
         [HttpDelete("movies/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             try {
-                _moviesService.Delete(id);
+                await _moviesService.Delete(id);
                 return Ok();
             } catch (ArgumentException ex)
             {
@@ -82,7 +88,7 @@ namespace MovieAPI.Controllers
         {
             var ms = new MemoryStream();
             file.CopyTo(ms);
-            _moviesService.SetPoster(id, ms.ToArray());
+            await _moviesService.SetPoster(id, ms.ToArray());
             return Ok();
         }
 

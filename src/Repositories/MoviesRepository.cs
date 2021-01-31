@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MovieAPI.Data;
 using MovieAPI.Models;
 using System.Linq;
+using Microsoft.VisualBasic;
 
 namespace MovieAPI.Repositories
 {
@@ -49,7 +50,6 @@ namespace MovieAPI.Repositories
         {
             return await _context.Movies.AnyAsync(c => c.Id == id);
         }
-
         public async Task<bool> ExistsByName(string name)
         {
             return _context.Movies.Any(c => c.Name.Contains(name));
@@ -111,9 +111,12 @@ namespace MovieAPI.Repositories
              }).FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<Movie> UpdateMovie(int id, CUMovieDto model)
+        public async Task<MovieDto> UpdateMovie(int id, CUMovieDto model)
         {
-            var movie = await _context.Movies.FirstOrDefaultAsync(c => c.Id == id);
+            var movie = await _context.Movies
+                .Include(x => x.Category)
+                .Include(x => x.Studio)
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             movie.Name = model.Name;
             movie.Year = model.Year;
@@ -124,7 +127,7 @@ namespace MovieAPI.Repositories
             movie.Studio = await GetCastsById(model.StoudioID);
 
             await _context.SaveChangesAsync();
-            return movie;
+            return await GetSingleMovie(movie.Id);
         }
         public async Task<bool> SetPoster(int id, byte[] image)
         {

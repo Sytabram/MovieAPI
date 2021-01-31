@@ -27,7 +27,7 @@ namespace MovieAPI.Services
             return movieDb;
         }
 
-        public async Task<Movie> Update(int id, CUMovieDto model)
+        public async Task<MovieDto> Update(int id, CUMovieDto model)
         {
             if (id < 1)
                 throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
@@ -102,7 +102,8 @@ namespace MovieAPI.Services
 
         public async Task<bool> ExistsByName(string name)
         {
-            return await _moviesRepository.ExistsByName(name);
+            var existsByName = await _moviesRepository.ExistsByName(name);
+            return existsByName;
         }
     }
 }
