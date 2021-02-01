@@ -10,7 +10,6 @@ namespace MovieAPI.Models
         [StringLength(15)]
         public string Name { get; set; }
         public ICollection<Movie> Movies { get; set; }
-        
     }
     public class CategorySummaryViewModel
     {
@@ -50,6 +49,8 @@ namespace MovieAPI.Models
     public class CategoryDto
     {
         public int Id { get; set; }
+        [Required] 
+        [StringLength(15)]
         public string Name{get; set;}
 
     }

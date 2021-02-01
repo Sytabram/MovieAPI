@@ -33,8 +33,8 @@ namespace MovieAPI.Services
             if (categoryToUpdate == null)
                 throw new ArgumentNullException(nameof(categoryToUpdate));
 
-            if (categoryToUpdate.Name.Length > 32)
-                throw new ArgumentOutOfRangeException(nameof(categoryToUpdate.Name), categoryToUpdate.Name, "Category name length cannot be greater than 32.");
+            if (categoryToUpdate.Name.Length > 15)
+                throw new ArgumentOutOfRangeException(nameof(categoryToUpdate.Name), categoryToUpdate.Name, "Category name length cannot be greater than 15.");
 
             if (!await _categoriesRepository.ExistsById(id))
                 throw new DataNotFoundException($"Category Id:{id} doesn't exists.");

@@ -38,6 +38,8 @@ namespace MovieAPI
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<ICategoriesRepository, CategoriesRepository>();
             services.AddTransient<IMoviesRepository,MoviesRepository>();
+            services.AddTransient<IStudiosService, StudiosService>();
+            services.AddTransient<IStudiosRepository, StudiosRepository>();
 
         }
 
