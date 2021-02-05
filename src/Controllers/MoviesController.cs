@@ -62,7 +62,7 @@ namespace MovieAPI.Controllers
             
         }
 
-        [HttpGet("search/movies")]
+        [HttpGet("movies/search")]
         public async Task<IActionResult> Search(string name)
         {
             if (name == null) return Unauthorized();
