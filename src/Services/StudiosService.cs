@@ -97,10 +97,6 @@ namespace MovieAPI.Services
             if (!await _studiosRepository.ExistsById(addMovieToStudio.StudioId))
                 throw new DataNotFoundException($"Studio Id:{addMovieToStudio.StudioId} doesn't exists.");
 
-            // Ici, si on avait un CharacterRepository on devrait checker si le CharacterId existe dans la db
-            // if (!_characterRepository.ExistsById(addCharacterToTeam.CharacterId))
-            //     throw new DataNotFoundException($"CharacterId:{addCharacterToTeam.CharacterId} doesn't exists.");
-
             var result = await _studiosRepository.AddMovieToStudio(addMovieToStudio.StudioId, addMovieToStudio.MovieId);
 
             if (result == 1)
@@ -122,11 +118,6 @@ namespace MovieAPI.Services
 
             if (!await _studiosRepository.ExistsById(removeMovieFromStudio.StudioId))
                 throw new DataNotFoundException($"Studio Id:{removeMovieFromStudio.StudioId} doesn't exists.");
-
-            // Ici, si on avait un CharacterRepository on devrait checker si le CharacterId existe dans la db
-            // if (!_characterRepository.ExistsById(addCharacterToTeam.CharacterId))
-            //     throw new DataNotFoundException($"CharacterId:{addCharacterToTeam.CharacterId} doesn't exists.");
-
             var result = await _studiosRepository.RemoveMovieStudio(removeMovieFromStudio.StudioId, removeMovieFromStudio.MovieId);
 
             if (result == 1)
