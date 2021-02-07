@@ -97,10 +97,6 @@ namespace MovieAPI.Services
             if (!await _categoriesRepository.ExistsById(addMovieToCategory.CategoryId))
                 throw new DataNotFoundException($"Category Id:{addMovieToCategory.CategoryId} doesn't exists.");
 
-            // Ici, si on avait un CharacterRepository on devrait checker si le CharacterId existe dans la db
-            // if (!_characterRepository.ExistsById(addCharacterToTeam.CharacterId))
-            //     throw new DataNotFoundException($"CharacterId:{addCharacterToTeam.CharacterId} doesn't exists.");
-
             var result = await _categoriesRepository.AddMovieToCategory(addMovieToCategory.CategoryId, addMovieToCategory.MovieId);
 
             if (result == 1)
@@ -122,10 +118,6 @@ namespace MovieAPI.Services
 
             if (!await _categoriesRepository.ExistsById(removeMovieFromCategory.CategoryId))
                 throw new DataNotFoundException($"Category Id:{removeMovieFromCategory.CategoryId} doesn't exists.");
-
-            // Ici, si on avait un CharacterRepository on devrait checker si le CharacterId existe dans la db
-            // if (!_characterRepository.ExistsById(addCharacterToTeam.CharacterId))
-            //     throw new DataNotFoundException($"CharacterId:{addCharacterToTeam.CharacterId} doesn't exists.");
 
             var result = await _categoriesRepository.RemoveMovieFromCategory(removeMovieFromCategory.CategoryId, removeMovieFromCategory.MovieId);
 

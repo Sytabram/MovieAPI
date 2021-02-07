@@ -26,14 +26,6 @@ namespace MovieAPI.Test.Services
             Task.WaitAll(Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => _StudiosService.CreateAsync(myFirstNameExceptionCast), "Firstname length cannot be greater than 35."));
         }
         [TestMethod]
-        public void AddStudioTestDateException()
-        {
-            CreateStudioDto myYearExceptionMovie = new CreateStudioDto();
-            myYearExceptionMovie.Name = "Studio 1";
-            myYearExceptionMovie.Creation_date = 12345;
-            Task.WaitAll(Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => _StudiosService.CreateAsync(myYearExceptionMovie), "Creation_date length must be 4."));
-        }
-        [TestMethod]
         public void DeleteCastTest()
         {
             CreateStudioDto myDeleteExceptionCast = new CreateStudioDto();
