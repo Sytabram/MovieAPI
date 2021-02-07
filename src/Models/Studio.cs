@@ -7,7 +7,7 @@ namespace MovieAPI.Models
     {
         public int Id { get; set; }
         [Required] 
-        [StringLength(15)]
+        [StringLength(35)]
         public string Name { get; set; }
         public string Country { get; set; }
         public int Creation_date { get; set; }
@@ -57,7 +57,7 @@ namespace MovieAPI.Models
     {
         public int Id { get; set; }
         [Required] 
-        [StringLength(15)]
+        [StringLength(35)]
         public string Name{get; set;}
         public string Country { get; set; }
         public int Creation_date { get; set; }

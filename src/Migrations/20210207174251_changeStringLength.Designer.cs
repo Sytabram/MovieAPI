@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieAPI.Data;
 
 namespace MovieAPI.Migrations
 {
     [DbContext(typeof(MovieAPIDataContext))]
-    partial class MovieAPIDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210207174251_changeStringLength")]
+    partial class changeStringLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

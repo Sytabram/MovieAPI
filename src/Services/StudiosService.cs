@@ -33,8 +33,8 @@ namespace MovieAPI.Services
             if (studioToUpdate == null)
                 throw new ArgumentNullException(nameof(studioToUpdate));
 
-            if (studioToUpdate.Name.Length > 15)
-                throw new ArgumentOutOfRangeException(nameof(studioToUpdate.Name), studioToUpdate.Name, "Studio name length cannot be greater than 15.");
+            if (studioToUpdate.Name.Length > 35)
+                throw new ArgumentOutOfRangeException(nameof(studioToUpdate.Name), studioToUpdate.Name, "Studio name length cannot be greater than 35.");
 
             if (!await _studiosRepository.ExistsById(id))
                 throw new DataNotFoundException($"Studio Id:{id} doesn't exists.");
@@ -50,8 +50,8 @@ namespace MovieAPI.Services
             if (studioToCreate == null)
                 throw new ArgumentNullException(nameof(studioToCreate));
 
-            if (studioToCreate.Name.Length > 15)
-                throw new ArgumentOutOfRangeException(nameof(studioToCreate.Name), studioToCreate.Name, "Studio name length cannot be greater than 15.");
+            if (studioToCreate.Name.Length > 35)
+                throw new ArgumentOutOfRangeException(nameof(studioToCreate.Name), studioToCreate.Name, "Studio name length cannot be greater than 35.");
 
             if (await _studiosRepository.ExistsByName(studioToCreate.Name))
                 throw new ArgumentException(nameof(studioToCreate.Name), $"Studio {studioToCreate.Name} already exists.");

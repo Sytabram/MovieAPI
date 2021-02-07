@@ -33,8 +33,8 @@ namespace MovieAPI.Services
                 throw new ArgumentOutOfRangeException(nameof(id), id, "Id cannot be lower than 1.");
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
-            if(model.Name.Length > 15)
-                throw new ArgumentOutOfRangeException(nameof(model.Name), model.Name, "Name length cannot be bigger than 15.");
+            if(model.Name.Length > 35)
+                throw new ArgumentOutOfRangeException(nameof(model.Name), model.Name, "Name length cannot be bigger than 35.");
             if(model.Year.ToString().Length != 4)
                 throw new ArgumentOutOfRangeException(nameof(model.Year), model.Year, "Year length must be 4.");
             if(model.Rating < 1 && model.Rating > 5)
@@ -47,8 +47,8 @@ namespace MovieAPI.Services
         {
             if(newMovie == null)
                 throw new ArgumentNullException(nameof(newMovie));
-            if(newMovie.Name.Length > 15)
-                throw new ArgumentOutOfRangeException(nameof(newMovie.Name), newMovie.Name, "Name length cannot be bigger than 15.");
+            if(newMovie.Name.Length > 35)
+                throw new ArgumentOutOfRangeException(nameof(newMovie.Name), newMovie.Name, "Name length cannot be bigger than 35.");
             if(newMovie.Year.ToString().Length != 4)
                 throw new ArgumentOutOfRangeException(nameof(newMovie.Year), newMovie.Year, "Year length must be 4.");
             if(newMovie.Rating < 1 && newMovie.Rating > 5)
