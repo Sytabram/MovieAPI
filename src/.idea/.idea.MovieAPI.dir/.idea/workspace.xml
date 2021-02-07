@@ -4,7 +4,10 @@
     <projectFile>MovieAPI.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87910566-0064-4ac6-8f3d-29e7e3d194a9" name="Default Changelist" comment="" />
+    <list default="true" id="87910566-0064-4ac6-8f3d-29e7e3d194a9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/.idea.MovieAPI.dir/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.idea.MovieAPI.dir/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieAPI.dir/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieAPI.dir/.idea/contentModel.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +70,8 @@
       <updated>1610612143073</updated>
       <workItem from="1610612147766" duration="22000" />
       <workItem from="1610618354987" duration="10000" />
+      <workItem from="1611007513860" duration="49000" />
+      <workItem from="1611918683172" duration="114000" />
     </task>
     <servers />
   </component>

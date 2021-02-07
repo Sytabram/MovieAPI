@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+    <e p="C:\Users\Bryan\AppData\local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Bryan\AppData\local\JetBrains\Rider2020.3\resharper-host\local\Transient\Rider\v203\SolutionCaches\_.19.01" t="ExcludeRecursive" />
+    <e p="C:\Users\Bryan\AppData\Roaming\JetBrains\Rider2020.3\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\Bryan\Documents\Git\MovieAPI\src" t="IncludeRecursive">
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include">
-        <e p="WeatherForecastController.cs" t="Include" />
+        <e p="CategoriesController.cs" t="Include" />
+        <e p="MoviesController.cs" t="Include" />
+        <e p="StudiosController.cs" t="Include" />
+      </e>
+      <e p="Data" t="Include">
+        <e p="MovieAPIDataContext.cs" t="Include" />
+      </e>
+      <e p="Exceptions" t="Include">
+        <e p="DataNotFoundException.cs" t="Include" />
+      </e>
+      <e p="Migrations" t="Include">
+        <e p="20210121074813_InitialCreate.cs" t="Include" />
+        <e p="20210121074813_InitialCreate.Designer.cs" t="Include" />
+        <e p="20210121081015_PosterCreate.cs" t="Include" />
+        <e p="20210121081015_PosterCreate.Designer.cs" t="Include" />
+        <e p="20210124170254_AddCategories.cs" t="Include" />
+        <e p="20210124170254_AddCategories.Designer.cs" t="Include" />
+        <e p="20210128111318_modificationsStudio.cs" t="Include" />
+        <e p="20210128111318_modificationsStudio.Designer.cs" t="Include" />
+        <e p="20210128112916_iCollectionMovie.cs" t="Include" />
+        <e p="20210128112916_iCollectionMovie.Designer.cs" t="Include" />
+        <e p="MovieAPIDataContextModelSnapshot.cs" t="Include" />
+      </e>
+      <e p="Models" t="Include">
+        <e p="Category.cs" t="Include" />
+        <e p="Movie.cs" t="Include" />
+        <e p="Studio.cs" t="Include" />
       </e>
       <e p="MovieAPI.csproj" t="IncludeRecursive" />
+      <e p="MovieAPI.db" t="Include" />
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
           <e p="net5.0" t="Include">
@@ -21,12 +51,19 @@
       <e p="Properties" t="Include">
         <e p="launchSettings.json" t="Include" />
       </e>
+      <e p="Repositories" t="Include">
+        <e p="CategoriesRepository.cs" t="Include" />
+        <e p="ICategoriesRepository.cs" t="Include" />
+        <e p="IMoviesRepository.cs" t="Include" />
+        <e p="MoviesRepository.cs" t="Include" />
+      </e>
+      <e p="Services" t="Include">
+        <e p="CategoriesService.cs" t="Include" />
+        <e p="ICategoriesService.cs" t="Include" />
+        <e p="IMoviesService.cs" t="Include" />
+        <e p="MoviesService.cs" t="Include" />
+      </e>
       <e p="Startup.cs" t="Include" />
-      <e p="WeatherForecast.cs" t="Include" />
     </e>
-    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
-    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/resharper-host/local/Transient/Rider/v203/SolutionCaches/_.19.00" t="ExcludeRecursive" />
   </component>
 </project>
